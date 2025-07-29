@@ -13,14 +13,52 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // เมธอด build() ส่งคืนโครงสร้างต้นไม้วิดเจ็ตสำหรับวิดเจ็ตนี้
     return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true, // ใช้ Material Design เวอร์ชันล่าสุด
+      ),
       title: 'Flutter Demo',
-      home: Scaffold( // โครงสร้างหน้าจอพื้นฐาน
-        appBar: AppBar(
-          title: const Text('Welcome to Flutter'),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+// ตัวอย่างวิดเจ็ตที่ส่งคืนโดย property 'home' ของ MaterialApp
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // ให้โครงสร้างแอปพื้นฐาน
+      appBar: AppBar(
+        title: const Text('Home Page'),
+        backgroundColor: Colors.blue, // ปรับแต่งสี AppBar
+      ),
+      body: Center(
+        // พื้นที่เนื้อหาหลัก
+        child: Container(
+          width: 300.0,
+          height: 150.0,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Center(
+            child: Image.asset(
+              'assets/images/cat.jpg', // URL รูปภาพตัวอย่าง
+              width: 100,
+              height: 50,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-        body: const Center(
-          child: Text('Hello, Flutter World!'),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('FAB Pressed!');
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
